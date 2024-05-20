@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import Reactlogo from './assets/react.svg'
-import logo from './logo.jpg'
+import React from 'react'
 import './App.css'
+import { useState } from 'react';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
 
+  const [left, setLeft] = useState(0)
+  const [right, setRight] = useState(0)
+  const [allClick, setAll] = useState([])
+
+  const handleLeftClick = () => {
+    setAll(allClick.concat('L'))
+    setLeft(left + 1)
+  }
+
+  const handleRightClick = () => {
+    setAll(allClick.concat('R'))
+    setRight(right + 1)
+  }
   return (
     <>
       <div>
-        <a href="https://in.linkedin.com/in/sarthak-naik-84a058266" target="_blank">
-          <img src={logo} className="logo" alt="logo" style={{ width: '250px', height: '300px', borderRadius: '50%' }} />
-        </a>
-
+        {left}
+        <button onClick={handleLeftClick}>left</button>
+        <button onClick={handleRightClick}>right</button>
+        {right}
+        <p>{allClick.join(' ')}</p>
       </div>
-      <h1>Sarthak Pankaj Naik</h1>
-      <img src={Reactlogo} alt="react logo" />
-      <div className="card">
-
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
-
 export default App
